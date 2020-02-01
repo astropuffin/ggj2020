@@ -1,56 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioSynth : MonoBehaviour {
-    public double frequency = 440;
+    public double frequency = 440f / 2f;
+    public float gain;
+    public float volume = 0.1f;
+    public WaveType waveType;
+
     private double _increment;
     private double _phase;
     private readonly double _samplingFrequency = 48000.0;
-
-    public float gain;
-    public float volume = 0.1f;
-    public float twelveToneRatio = Mathf.Pow(2,1f/12f);
-
-    public double[] frequencies;
-    public int thisFreq;
-    public WaveType waveType;
+    private readonly float _twelveToneRatio = Mathf.Pow(2,1f/12f);
+    private float _keyDown;
 
     public enum WaveType {
         Sin,
         Square,
-        Triangle
+        Triangle,
+        Cube,
+        Soft
     }
 
     void Start() {
         gain = 0;
         waveType = WaveType.Sin;
-        frequencies = new [] {
-            frequency,
-            frequency * Mathf.Pow(twelveToneRatio, 1),
-            frequency * Mathf.Pow(twelveToneRatio, 2),
-            frequency * Mathf.Pow(twelveToneRatio, 3),
-            frequency * Mathf.Pow(twelveToneRatio, 4),
-            frequency * Mathf.Pow(twelveToneRatio, 5),
-            frequency * Mathf.Pow(twelveToneRatio, 6),
-            frequency * Mathf.Pow(twelveToneRatio, 7),
-            frequency * Mathf.Pow(twelveToneRatio, 8),
-            frequency * Mathf.Pow(twelveToneRatio, 9),
-            frequency * Mathf.Pow(twelveToneRatio, 10),
-            frequency * Mathf.Pow(twelveToneRatio, 11),
-            frequency * Mathf.Pow(twelveToneRatio, 12),
-        };
-        thisFreq = 0;
+        _keyDown = 0;
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Z)) {
-            gain = volume;
-            frequency = frequencies[thisFreq];
-            thisFreq += 1;
-            thisFreq %= frequencies.Length;
+            _keyDown = Time.time;
+            frequency *= _twelveToneRatio;
         }
+
+        gain = volume * Attenuation(Time.time - _keyDown);
     }
 
     private void OnAudioFilterRead(float[] data, int channels) {
@@ -78,6 +60,10 @@ public class AudioSynth : MonoBehaviour {
                 return TriangleWave(phase);
             case WaveType.Square:
                 return SquareWave(phase);
+            case WaveType.Cube:
+                return CubeWave(phase);
+            case WaveType.Soft:
+                return SoftWave(phase);
             default:
                 return 0f;
         }
@@ -87,6 +73,7 @@ public class AudioSynth : MonoBehaviour {
         return Mathf.Sin((float) phase);
     }
 
+
     private static float SquareWave(double phase) {
         if (Mathf.Sin((float) phase) >= 0) {
             return 0.6f;
@@ -95,4 +82,21 @@ public class AudioSynth : MonoBehaviour {
     }
 
     private static float TriangleWave(double phase) { return Mathf.PingPong((float) phase, 1.0f); }
+
+    private static float CubeWave(double phase) {
+        var sin = Mathf.Sin((float) phase);
+        return sin + sin * sin * sin;
+    }
+
+    private static float SoftWave(double phase) {
+        return 0.6f * Mathf.Sin((float) phase)
+                    + 0.4f * Mathf.Sin(2f * (float) phase);
+    }
+    private static float Attenuation(float time) {
+        return Mathf.Min(1, Mathf.Exp(-4f * time));
+    }
+
+    private static float Attenuation2(float time) {
+        return 16 * time * Mathf.Exp(-6 * time);
+    }
 }
