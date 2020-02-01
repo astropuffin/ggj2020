@@ -65,13 +65,14 @@ public class CatTasker : MonoBehaviour
             currentPurrPower -= decaySpeed * Time.deltaTime;
         }
 
+        /*
         if(currentPurrPower >= 1.0f)
         {
             RandomizeTask();
         }
-
+        */
         currentPurrPower = Mathf.Clamp01(currentPurrPower);
 
-        SetPurrPower(currentPurrPower);
+        //SetPurrPower(currentPurrPower);
     }
 }
