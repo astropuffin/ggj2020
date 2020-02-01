@@ -78,36 +78,32 @@ public class CatPetter : MonoBehaviour
     HashSet<KeyCode> currentCenterRegionKeys = new HashSet<KeyCode>();
 
 
+    public Task currentLeftAction, currentRightAction, currentCenterAction;
+
     
 
-    public enum PettingType
-    {
-        poke = 1,
-        tickle = 2,
-        scratch = 4,
-        pet = 5,
-    }
-
-    void SetRegionText(int count, TextMeshPro textobj )
+    void SetRegionText(int count, TextMeshPro textobj, ref Task task )
     {
         if(count == 1)
         {
             textobj.text = "poke";
+            task = Task.poke;
         }
-        if (count == 2)
+        else if (count >= 2 && count <= 4)
         {
             textobj.text = "tickle";
+            task = Task.tickle;
         }
-        if (count == 4)
-        {
-            textobj.text = "scratch";
-        }
-
-        if(count >= 5)
+        else if(count >= 5)
         {
             textobj.text = "pet";
+            task = Task.pet;
         }
-
+        else
+        {
+            textobj.text = "none";
+            task = Task.none;
+        }
     }
 
     int CountKeysInRegion(HashSet<KeyCode> region)
@@ -131,6 +127,21 @@ public class CatPetter : MonoBehaviour
         return count;
     }
 
+    public bool IsPettingRegion(Task task, Region region)
+    {
+        if(region == Region.left)
+            return currentLeftAction == task;
+
+        if (region == Region.right)
+            return currentRightAction == task;
+
+        if (region == Region.center)
+            return currentCenterAction == task;
+
+
+        return false;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -147,10 +158,9 @@ public class CatPetter : MonoBehaviour
         int rightKeyCount = CountKeysInRegion(rightRegion);
         int centerKeyCount = CountKeysInRegion(centerRegion);
 
-        SetRegionText(leftKeyCount, leftText);
-        SetRegionText(rightKeyCount, rightText);
-        SetRegionText(centerKeyCount, centerText);
-
+        SetRegionText(leftKeyCount, leftText, ref currentLeftAction);
+        SetRegionText(rightKeyCount, rightText, ref currentRightAction);
+        SetRegionText(centerKeyCount, centerText, ref currentCenterAction);
     }
 }
 
