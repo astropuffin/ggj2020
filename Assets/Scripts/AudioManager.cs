@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
     public Sound[] AngrySounds;
     private int angreIndex = 0;
     public Sound BackgroundMusic;
+    public Sound BarFilling;
 
     public static AudioManager instance;
     void Awake()
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour {
             InitSound(s);
         }
         InitSound(BackgroundMusic);
+        InitSound(BarFilling);
     }
 
     private void Start() {
@@ -82,5 +84,13 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayBackgroundMusic() {
         BackgroundMusic.source.Play();
+    }
+
+    public void PlayBarFilling() {
+        BarFilling.source.Play();
+    }
+
+    public void StopBarFilling() {
+        BarFilling.source.Stop();
     }
 }

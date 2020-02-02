@@ -119,19 +119,37 @@ MonoBehaviour:
   PurrSounds:
   - name: Purr1
     clip: {fileID: 8300000, guid: 745c5b3af88c0cc4893408c8cf53d619, type: 3}
-    volume: 1
+    volume: 3
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Purr2
     clip: {fileID: 8300000, guid: 36d26fb7e74011342a7da860886e435d, type: 3}
-    volume: 1
+    volume: 2
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Purr3
     clip: {fileID: 8300000, guid: bd6ab1966dc52084c81c2d5b6561da66, type: 3}
-    volume: 1
+    volume: 2
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Purr4
+    clip: {fileID: 8300000, guid: 3d4c4318142954f42999da7cdd58fae4, type: 3}
+    volume: 2
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Purr5
+    clip: {fileID: 8300000, guid: 4a80870f2fbfe7f428296a2b76a42320, type: 3}
+    volume: 2
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: Purr6
+    clip: {fileID: 8300000, guid: 98512c91003855140bd376ca4954b5bd, type: 3}
+    volume: 2
     pitch: 1
     source: {fileID: 0}
     loop: 0
@@ -147,5 +165,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: de0944bbe186b3d459e99346205b35a8, type: 3}
     volume: 1
     pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  BarFilling:
+    name: ShepardTone
+    clip: {fileID: 8300000, guid: 2e0cacc9b67a7c44197c6e2c5bd7e437, type: 3}
+    volume: 0.8
+    pitch: 0
     source: {fileID: 0}
     loop: 1
