@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour
     public float timeToFill;
     public Color nice;
     public Color bad;
+    public Gradient badToGood;
 
     public bool DetectOverlap(float pos)
     {
@@ -69,6 +70,7 @@ public class Goal : MonoBehaviour
             //once = false;
         }
 
-        barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
+        //barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
+        barImage.color = badToGood.Evaluate(timeRemaining / (maxTime/2f));
     }
 }
