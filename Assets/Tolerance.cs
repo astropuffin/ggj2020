@@ -24,7 +24,7 @@ public class Tolerance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Tolerance Exhausted in: " + timer.ToString("F1");
+        text.text = "<mspace=0.8em>" + timer.ToString("F1");
         timer -= Time.deltaTime;
         text.color = badToGood.Evaluate(Mathf.Clamp01(timer / timerStartVal));
 
