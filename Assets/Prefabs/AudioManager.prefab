@@ -50,8 +50,8 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Meow2
-    clip: {fileID: 8300000, guid: 946ec9f6f93a4614b8ba53d24a9c25cc, type: 3}
+  - name: Meow12
+    clip: {fileID: 8300000, guid: cbb05c07ecfcd1f43b0b3f1c4a46ccb3, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -106,12 +106,6 @@ MonoBehaviour:
     loop: 0
   - name: Meow11
     clip: {fileID: 8300000, guid: bb0384b1f15524d45b0edd96752a297e, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: Meow12
-    clip: {fileID: 8300000, guid: cbb05c07ecfcd1f43b0b3f1c4a46ccb3, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
