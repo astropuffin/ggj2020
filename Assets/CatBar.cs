@@ -9,7 +9,7 @@ public class CatBar : MonoBehaviour
     public float goalPosition;
 
     public float indicatorPosition;
-    public float acceleration;
+    public float accelerationPet, accelerationTickle;
     public float drag;
     public float maxVelocity;
     public float currentVel;
@@ -75,13 +75,13 @@ public class CatBar : MonoBehaviour
 
         if (scratch)
         {
-            currentVel -= acceleration;
+            currentVel -= accelerationTickle;
             petter.ClearInputs(region);
         }
 
         if (pet)
         {
-            currentVel += acceleration;
+            currentVel += accelerationPet;
             petter.ClearInputs(region);
         }
 

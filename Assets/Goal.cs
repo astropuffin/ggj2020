@@ -63,8 +63,8 @@ public class Goal : MonoBehaviour
 
         if(once && timeRemaining < 5)
         {
-            FindObjectOfType<AudioManager>().PlayTimeWarning();
-            once = false;
+            //FindObjectOfType<AudioManager>().PlayTimeWarning();
+            //once = false;
         }
 
         barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
