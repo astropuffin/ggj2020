@@ -47,18 +47,18 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayMeow() {
-        PlaySoundArray(MeowSounds, meowIndex);
+        PlaySoundArray(MeowSounds, ref meowIndex);
     }
 
     public void PlayPurr() {
-        PlaySoundArray(PurrSounds, purrIndex);
+        PlaySoundArray(PurrSounds, ref purrIndex);
     }
 
     public void PlayAngry() {
-        PlaySoundArray(AngrySounds, angreIndex);
+        PlaySoundArray(AngrySounds, ref angreIndex);
     }
 
-    private void PlaySoundArray(Sound[] array, int index) {
+    private void PlaySoundArray(Sound[] array, ref int index) {
         array[index].source.Play();
         index++;
         index %= array.Length;
