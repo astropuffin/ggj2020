@@ -32,6 +32,13 @@ public class CatTasker : MonoBehaviour
     public float powerPerSecond;
     public float currentPurrPower;
 
+
+    public float currentVel;
+    public float acceleration;
+    public float maxVelocity;
+    public float gravity;
+    public float drag;
+
     public void SetPurrPower(float purrPower)
     {
         bar.anchorMax = new Vector2(purrPower, bar.anchorMax.y);
@@ -44,7 +51,7 @@ public class CatTasker : MonoBehaviour
         RandomizeTask();
     }
 
-    void RandomizeTask()
+    public void RandomizeTask()
     {
         currentTask = (Task)Random.Range(0, 3);
         currentRegion = (Region)Random.Range(0, 3);
@@ -58,21 +65,20 @@ public class CatTasker : MonoBehaviour
         var purrPowerIncreasing = petter.IsPettingRegion(currentTask, currentRegion);
         if(purrPowerIncreasing)
         {
-            currentPurrPower += powerPerSecond * Time.deltaTime;
-        }
-        else
-        {
-            currentPurrPower -= decaySpeed * Time.deltaTime;
-        }
+            currentVel += acceleration * Time.deltaTime;
 
-        /*
-        if(currentPurrPower >= 1.0f)
-        {
-            RandomizeTask();
         }
-        */
+        currentVel -= gravity * Time.deltaTime;
+
+        currentVel = Mathf.Clamp(currentVel, -maxVelocity, maxVelocity);
+        currentPurrPower += currentVel * Time.deltaTime;
+
+        
         currentPurrPower = Mathf.Clamp01(currentPurrPower);
-
-        //SetPurrPower(currentPurrPower);
+        if (currentPurrPower == 0 || currentPurrPower == 1)
+        {
+            currentVel = 0;
+        }
+        
     }
 }
