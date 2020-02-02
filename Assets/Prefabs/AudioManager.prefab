@@ -174,3 +174,10 @@ MonoBehaviour:
     pitch: 0
     source: {fileID: 0}
     loop: 1
+  TimeWarning:
+    name: Warning
+    clip: {fileID: 8300000, guid: 8d8a514580036434488c21bf1f5755ca, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+    loop: 0
