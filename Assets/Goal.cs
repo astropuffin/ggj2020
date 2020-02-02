@@ -8,11 +8,14 @@ public class Goal : MonoBehaviour
 {
     public RectTransform bar;
     public RectTransform holder;
+    public Image barImage;
     public float timeRemaining;
     public float maxTime;
     public float goalPosition, goalSize;
     public CatBar dad;
     public float timeToFill;
+    public Color nice;
+    public Color bad;
 
     public bool DetectOverlap(float pos)
     {
@@ -55,5 +58,6 @@ public class Goal : MonoBehaviour
             dad.FailPoint(this);
         }
 
+        barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
     }
 }

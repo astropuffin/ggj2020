@@ -62,7 +62,7 @@ public class CatBar : MonoBehaviour
 
     private void Start()
     {
-        spawnTimer = Random.Range(5.0f, difficulty);
+        spawnTimer = Random.Range(1.0f, 2.0f);
     }
 
 
