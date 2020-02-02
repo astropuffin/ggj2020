@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour
     public float timeToFill;
     public Color nice;
     public Color bad;
+    public bool overlaps;
 
     public bool DetectOverlap(float pos)
     {
@@ -37,18 +38,16 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var overlaps = DetectOverlap(dad.indicatorPosition);
+        overlaps = DetectOverlap(dad.indicatorPosition);
 
         if (overlaps)
         {
-            dad.overlapping = true;
             // to fill in five seconds, we need to add 1/5th of maxTime per second
             timeRemaining += (maxTime / timeToFill) * Time.deltaTime;
             ShowPower(true);
         }
         else
         {
-            dad.overlapping = true;
             timeRemaining -= Time.deltaTime;
             ShowPower(false);
         }

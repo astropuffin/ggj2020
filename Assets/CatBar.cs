@@ -27,10 +27,6 @@ public class CatBar : MonoBehaviour
 
     public float spawnTimer;
 
-    static int numberOfHappyCats;
-    public Animator ani;
-    public bool overlapping;
-
     void SpawnGoal()
     {
         var canvas = transform.parent;
@@ -51,7 +47,7 @@ public class CatBar : MonoBehaviour
 
         goal.timeToFill = 5;
         goal.timeRemaining = 10;
-        goal.maxTime = 20;
+        goal.maxTime = 15;
         goal.goalPosition = goalPosition;
         goal.goalSize = goalSize;
         goal.dad = this;
@@ -110,14 +106,6 @@ public class CatBar : MonoBehaviour
         spawnTimer -= Time.deltaTime;
 
 
-        if(overlapping)
-        {
-          ani.SetFloat("howMuchHappy", Mathf.Lerp(ani.GetFloat("howMuchHappy"), 1, 9 * Time.deltaTime));
-        }
-        else
-        {
-          ani.SetFloat("howMuchHappy", Mathf.Lerp(ani.GetFloat("howMuchHappy"), 0, 9 * Time.deltaTime));
-        }
     }
 
     public void ScorePoint(Goal g)
