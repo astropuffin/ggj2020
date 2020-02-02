@@ -28,6 +28,9 @@ public class AudioManager : MonoBehaviour {
         foreach (Sound s in PurrSounds) {
             InitSound(s);
         }
+        foreach (Sound s in AngrySounds) {
+            InitSound(s);
+        }
         InitSound(BackgroundMusic);
     }
 
@@ -43,22 +46,38 @@ public class AudioManager : MonoBehaviour {
         s.source.loop = s.loop;
     }
 
-    public void Meow() {
-        PlaySoundArray(MeowSounds, meowIndex);
+    public void PlayMeow() {
+        PlaySoundArray(MeowSounds, ref meowIndex);
     }
 
-    public void Purr() {
-        PlaySoundArray(PurrSounds, purrIndex);
+    public void PlayPurr() {
+        PlaySoundArray(PurrSounds, ref purrIndex);
     }
 
-    public void Angry() {
-        PlaySoundArray(AngrySounds, angreIndex);
+    public void PlayAngry() {
+        PlaySoundArray(AngrySounds, ref angreIndex);
     }
 
-    private void PlaySoundArray(Sound[] array, int index) {
+    private void PlaySoundArray(Sound[] array, ref int index) {
         array[index].source.Play();
         index++;
         index %= array.Length;
+    }
+
+    public void StopAngry() {
+        StopSound(AngrySounds, angreIndex);
+    }
+
+    public void StopPurr() {
+        StopSound(PurrSounds, purrIndex);
+    }
+
+    public void StopMeow() {
+        StopSound(MeowSounds, meowIndex);
+    }
+
+    public void StopSound(Sound[] array, int index) {
+        array[index].source.Stop();
     }
 
     public void PlayBackgroundMusic() {
