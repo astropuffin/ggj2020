@@ -30,7 +30,7 @@ public class Goal : MonoBehaviour
         bar.anchorMax = new Vector2(normalizedPower, bar.anchorMax.y);
 
         if(shake)
-            holder.DOShakeScale(0.1f, normalizedPower / 10.0f);
+            holder.DOShakeScale(0.1f, normalizedPower / 20.0f);
     }
 
     bool once = true;
