@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CatBar : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class CatBar : MonoBehaviour
 
     public float powerSpeed, powerDecay, purrPower;
     public RectTransform powerBar;
+    public RectTransform powerBarHolder;
 
     // Start is called before the first frame update
     void Start()
@@ -42,19 +44,19 @@ public class CatBar : MonoBehaviour
     {
         var masterHeight = master.sizeDelta.y;
 
-        goalSize = Random.Range(0.03f, 0.1f);
+        goalSize = Random.Range(0.05f, 0.1f);
         goalPosition = Random.value;
 
         var relativeHeight = goalPosition * masterHeight;
 
-        goal.anchoredPosition = new Vector2(goal.anchoredPosition.x, relativeHeight);
-        goal.sizeDelta = new Vector2(goal.sizeDelta.x, goalSize * masterHeight);
-
+        goal.DOAnchorPos(new Vector2(goal.anchoredPosition.x, relativeHeight), 0.25f);
+        goal.DOSizeDelta(new Vector2(goal.sizeDelta.x, goalSize * masterHeight), 0.25f);
     }
 
     void ShowPower()
     {
         powerBar.anchorMax = new Vector2(purrPower, powerBar.anchorMax.y);
+        powerBarHolder.DOShakeAnchorPos(0.1f, purrPower / 10.0f);
 
     }
 

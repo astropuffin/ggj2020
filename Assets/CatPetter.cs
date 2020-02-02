@@ -150,9 +150,9 @@ public class CatPetter : MonoBehaviour
         right = DetectKeyInRegion(rightRegion);
         center = DetectKeyInRegion(centerRegion);
 
-        leftIndicator.SetActive(left);
-        rightIndicator.SetActive(right);
-        centerIndicator.SetActive(center);
+        //leftIndicator.SetActive(left);
+        //rightIndicator.SetActive(right);
+        //centerIndicator.SetActive(center);
 
         int leftKeyCount = CountKeysInRegion(leftRegion);
         int rightKeyCount = CountKeysInRegion(rightRegion);
