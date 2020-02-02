@@ -366,7 +366,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -880.5, y: -520.5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 734.6, y: 177.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &722308736
 CanvasRenderer:
@@ -422,13 +422,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 63.1
+  m_fontSizeBase: 63.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -501,6 +501,36 @@ MonoBehaviour:
   text: {fileID: 722308735}
   timePerPoint: 3
   timer: 60
+  timerStartVal: 60
+  badToGood:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0.95967734, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0.047753334, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 34502
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!1 &992648565
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1307511552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1342,7 +1372,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.2654815, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1415,7 +1445,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.7667067, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1488,7 +1518,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.2654815, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1561,7 +1591,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.7667067, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1634,7 +1664,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.2654815, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2451,11 +2481,11 @@ MonoBehaviour:
   goalSize: 0
   goalPosition: 0
   indicatorPosition: 0.5
-  acceleration: 0.25
+  accelerationPet: 0
+  accelerationTickle: 0
   drag: 0.99
   maxVelocity: 1
   currentVel: 0
-  goal: {fileID: 0}
   indicator: {fileID: 5373703795966548645}
   master: {fileID: 5373703796218999268}
   region: 1
@@ -2466,6 +2496,9 @@ MonoBehaviour:
   goalPrefab: {fileID: 0}
   audioManager: {fileID: 0}
   difficulty: 0
+  spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!1 &5373703796257508620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,11 +2595,11 @@ MonoBehaviour:
   goalSize: 0
   goalPosition: 0
   indicatorPosition: 0.5
-  acceleration: 0.25
+  accelerationPet: 0
+  accelerationTickle: 0
   drag: 0.99
   maxVelocity: 1
   currentVel: 0
-  goal: {fileID: 0}
   indicator: {fileID: 5373703796698985865}
   master: {fileID: 5373703796257508621}
   region: 0
@@ -2577,6 +2610,9 @@ MonoBehaviour:
   goalPrefab: {fileID: 0}
   audioManager: {fileID: 0}
   difficulty: 0
+  spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!1 &5373703796362364605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,11 +3259,11 @@ MonoBehaviour:
   goalSize: 0
   goalPosition: 0
   indicatorPosition: 0.5
-  acceleration: 0.25
+  accelerationPet: 0
+  accelerationTickle: 0
   drag: 0.99
   maxVelocity: 1
   currentVel: 0
-  goal: {fileID: 0}
   indicator: {fileID: 5373703797058594619}
   master: {fileID: 5373703796887671108}
   region: 2
@@ -3238,6 +3274,9 @@ MonoBehaviour:
   goalPrefab: {fileID: 0}
   audioManager: {fileID: 0}
   difficulty: 0
+  spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!1 &5373703796946541204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3679,7 @@ RectTransform:
   m_LocalScale: {x: 1.7667067, y: 1.7667067, z: 1.7667067}
   m_Children: []
   m_Father: {fileID: 5373703796257508621}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
