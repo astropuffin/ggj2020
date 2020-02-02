@@ -14,20 +14,43 @@ public class CatBar : MonoBehaviour
     public float maxVelocity;
     public float currentVel;
 
-    public RectTransform goal, indicator, master;
+    public RectTransform indicator, master;
     public Region region;
     public CatPetter petter;
 
     public float powerSpeed, powerDecay, purrPower;
-    public RectTransform powerBar;
-    public RectTransform powerBarHolder;
+    public GameObject goalPrefab;
+
 
     public AudioManager audioManager;
+    public float difficulty;
 
-    // Start is called before the first frame update
-    void Start()
+    public float spawnTimer;
+
+    void SpawnGoal()
     {
-        RandomizeGoal();
+        var canvas = transform.parent;
+        var goal = Instantiate(goalPrefab).GetComponent<Goal>();
+
+
+        var masterHeight = master.sizeDelta.y;
+
+        goalSize = Random.Range(0.05f, 0.1f);
+        goalPosition = Random.value;
+        var relativeHeight = goalPosition * masterHeight;
+        goal.transform.SetParent(transform);
+        goal.transform.localScale = Vector3.one;
+        var gr = goal.GetComponent<RectTransform>();
+
+        gr.anchoredPosition = new Vector2(0, relativeHeight);
+        gr.sizeDelta = new Vector2(gr.sizeDelta.x, goalSize * masterHeight);
+
+        goal.timeToFill = 5;
+        goal.timeRemaining = 10;
+        goal.maxTime = 20;
+        goal.goalPosition = goalPosition;
+        goal.goalSize = goalSize;
+        goal.dad = this;
     }
 
     void SetIndicatorPos(float pos)
@@ -37,38 +60,9 @@ public class CatBar : MonoBehaviour
         indicator.anchoredPosition = new Vector2(indicator.anchoredPosition.x, relativePos);
     }
 
-    bool DetectOverlap()
+    private void Start()
     {
-        return indicatorPosition > goalPosition - goalSize / 2 && indicatorPosition < goalPosition + goalSize / 2;
-    }
-
-    void RandomizeGoal()
-    {
-        var masterHeight = master.sizeDelta.y;
-
-        goalSize = Random.Range(0.05f, 0.1f);
-        goalPosition = Random.value;
-
-        var relativeHeight = goalPosition * masterHeight;
-
-        goal.DOAnchorPos(new Vector2(goal.anchoredPosition.x, relativeHeight), 0.25f);
-        goal.DOSizeDelta(new Vector2(goal.sizeDelta.x, goalSize * masterHeight), 0.25f);
-
-        FindObjectOfType<Tolerance>().AddPoint();
-        FindObjectOfType<Score>().AddPoint();
-
-        audioManager.PlayMeow();
-    }
-
-    void ShowPower()
-    {
-        powerBar.anchorMax = new Vector2(purrPower, powerBar.anchorMax.y);
-        powerBarHolder.DOShakeScale(0.1f, purrPower/10.0f);
-        if (purrPower == 0)
-        {
-            powerBarHolder.DOScale(Vector3.one, 0.1f);
-        }
-
+        spawnTimer = Random.Range(5.0f, difficulty);
     }
 
 
@@ -100,23 +94,27 @@ public class CatBar : MonoBehaviour
         currentVel *= drag;
         SetIndicatorPos(indicatorPosition);
 
-        if(DetectOverlap())
+        if(spawnTimer < 0)
         {
-            purrPower += powerSpeed * Time.deltaTime;
-        }
-        else
-        {
-            purrPower -= powerDecay * Time.deltaTime;
+            SpawnGoal();
+            spawnTimer = Random.Range(5.0f, difficulty);
         }
 
-        if (purrPower > 1)
-            RandomizeGoal();
-
-        purrPower = Mathf.Clamp01(purrPower);
-
-        
-
-        ShowPower();
-
+        spawnTimer -= Time.deltaTime;
     }
+
+    public void ScorePoint(Goal g)
+    {
+        FindObjectOfType<Tolerance>().AddPoint();
+        FindObjectOfType<Score>().AddPoint();
+        Destroy(g.gameObject);
+        audioManager.PlayMeow();
+    }
+
+    public void FailPoint(Goal g)
+    {
+        Destroy(g.gameObject);
+        audioManager.PlayAngry();
+    }
+
 }
