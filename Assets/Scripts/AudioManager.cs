@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
     public Sound[] MeowSounds;
@@ -25,6 +26,10 @@ public class AudioManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+        init();
+    }
+
+    void init() {
         foreach (Sound s in MeowSounds) {
             InitSound(s);
         }
