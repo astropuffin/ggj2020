@@ -21,6 +21,9 @@ public class CooperativeCat : MonoBehaviour
 
     public float sinkerPower, sinkerDecay;
     public float windowPower, windowDecay;
+    public float pleasurePower, pleasureDecay;
+    public float currentPleasure;
+    public RectTransform pleasureBar;
 
     Dictionary<Player, PlayerState> state = new Dictionary<Player, PlayerState>();
 
@@ -67,7 +70,6 @@ public class CooperativeCat : MonoBehaviour
     {
         var masterWidth = masterWindow.sizeDelta.x;
         var windowWidth = window.sizeDelta.x;
-        var proportion = masterWidth / windowWidth;
         var farExtent = masterWidth - windowWidth;
         var xPos = Mathf.Lerp(0, farExtent, power);
 
@@ -76,16 +78,69 @@ public class CooperativeCat : MonoBehaviour
 
     void SetSinkerPos(float power)
     {
+        var masterWidth = masterWindow.sizeDelta.x;
+        var sinkerWidth = sinker.sizeDelta.x;
+        var farExtent = masterWidth - sinkerWidth;
+        var xPos = Mathf.Lerp(0, -farExtent, power);
 
+        sinker.anchoredPosition = new Vector2(xPos, sinker.anchoredPosition.y);
     }
 
+    bool DetectOverlap()
+    {
+        var masterWidth = masterWindow.sizeDelta.x;
+        var windowWideth = window.sizeDelta.x;
+        var sinkerRelativePosition = masterWidth + sinker.anchoredPosition.x;
+        sinkerRelativePosition = window.anchoredPosition.x - sinkerRelativePosition;
+        sinkerRelativePosition *= -1;
+
+        if (sinkerRelativePosition <= windowWideth && sinkerRelativePosition >= 0)
+            return true;
+
+        return false;
+    }
+
+    public void SetPurrPower(float purrPower)
+    {
+        pleasureBar.anchorMax = new Vector2(purrPower, pleasureBar.anchorMax.y);
+    }
+
+
+    void RandomizeTask()
+    {
+        ct1.RandomizeTask();
+        ct2.RandomizeTask();
+        while(ct1.currentRegion == ct2.currentRegion)
+        {
+            ct1.RandomizeTask();
+            ct2.RandomizeTask();
+        }
+
+        currentPleasure = 0;
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
         SetWindowPos(ct1.currentPurrPower);
+        SetSinkerPos(ct2.currentPurrPower);
 
+        if(DetectOverlap())
+        {
+            currentPleasure += pleasurePower * Time.deltaTime;
+        }
+        else
+        {
+            currentPleasure -= pleasurePower * Time.deltaTime;
+        }
 
+        if (currentPleasure >= 1)
+            RandomizeTask();
 
+        currentPleasure = Mathf.Clamp01(currentPleasure);
+        SetPurrPower(currentPleasure);
+
+        
     }
 }
