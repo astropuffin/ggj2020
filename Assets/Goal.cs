@@ -31,6 +31,9 @@ public class Goal : MonoBehaviour
             holder.DOShakeScale(0.1f, normalizedPower / 10.0f);
     }
 
+    bool once = true;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -56,6 +59,12 @@ public class Goal : MonoBehaviour
         if(timeRemaining < 0)
         {
             dad.FailPoint(this);
+        }
+
+        if(once && timeRemaining < 5)
+        {
+            //FindObjectOfType<AudioManager>().PlayTimeWarning();
+            //once = false;
         }
 
         barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
