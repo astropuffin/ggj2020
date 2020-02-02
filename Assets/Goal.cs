@@ -70,6 +70,6 @@ public class Goal : MonoBehaviour
         }
 
         //barImage.color = Color.Lerp(bad, nice, timeRemaining / maxTime);
-        barImage.color = badToGood.Evaluate(timeRemaining / (maxTime/2f));
+        barImage.color = badToGood.Evaluate(timeRemaining / (maxTime/1.33f));
     }
 }
