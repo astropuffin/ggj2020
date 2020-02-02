@@ -41,12 +41,14 @@ public class Goal : MonoBehaviour
 
         if (overlaps)
         {
+            dad.overlapping = true;
             // to fill in five seconds, we need to add 1/5th of maxTime per second
             timeRemaining += (maxTime / timeToFill) * Time.deltaTime;
             ShowPower(true);
         }
         else
         {
+            dad.overlapping = true;
             timeRemaining -= Time.deltaTime;
             ShowPower(false);
         }

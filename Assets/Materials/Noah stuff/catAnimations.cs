@@ -15,13 +15,6 @@ public class catAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetKey(KeyCode.B))
-        {
-            ani.SetFloat("howMuchHappy", Mathf.Lerp(ani.GetFloat("howMuchHappy"), 1, 9*Time.deltaTime));
-        } 
-       else
-        {
-            ani.SetFloat("howMuchHappy", Mathf.Lerp(ani.GetFloat("howMuchHappy"), 0, 9 * Time.deltaTime));
-        }
+      
     }
 }
