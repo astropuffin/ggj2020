@@ -22,7 +22,7 @@ public class CatBar : MonoBehaviour
     public GameObject goalPrefab;
 
 
-    public AudioManager audioManager;
+    private AudioManager audioManager;
     public float difficulty;
 
     public float spawnTimer;
@@ -64,8 +64,8 @@ public class CatBar : MonoBehaviour
     private void Start()
     {
         spawnTimer = Random.Range(1.0f, 2.0f);
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-
 
     // Update is called once per frame
     void Update()
