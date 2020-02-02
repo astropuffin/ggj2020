@@ -41,6 +41,9 @@ public class AudioManager : MonoBehaviour {
     }
 
     private void Start() {
+        meowIndex = 0;
+        purrIndex = 0;
+        angreIndex = 0;
         PlayBackgroundMusic();
     }
 
