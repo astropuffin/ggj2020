@@ -702,6 +702,8 @@ MonoBehaviour:
   audioManager: {fileID: 1340483122}
   difficulty: 0
   spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!114 &252726756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,6 +1879,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196022118}
   m_CullTransparentMesh: 0
+--- !u!95 &1259619108 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1467283349329089954, guid: 242104e8f8a02d148979fc47c0ca05a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 170528901}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1299536256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2476,6 +2484,8 @@ MonoBehaviour:
   audioManager: {fileID: 1340483122}
   difficulty: 0
   spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!1001 &1824135087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2564,6 +2574,11 @@ PrefabInstance:
       propertyPath: accelerationTickle
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5373703796218999269, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: ani
+      value: 
+      objectReference: {fileID: 1259619108}
     - target: {fileID: 5373703796257508616, guid: 51b8bcdd43a89bf4e85983e85aa39644,
         type: 3}
       propertyPath: petter
@@ -2605,6 +2620,11 @@ PrefabInstance:
       propertyPath: accelerationTickle
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5373703796257508616, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: ani
+      value: 
+      objectReference: {fileID: 1259619108}
     - target: {fileID: 5373703796482193945, guid: 51b8bcdd43a89bf4e85983e85aa39644,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2756,6 +2776,11 @@ PrefabInstance:
       propertyPath: accelerationTickle
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5373703796887671109, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: ani
+      value: 
+      objectReference: {fileID: 1259619108}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b8bcdd43a89bf4e85983e85aa39644, type: 3}
 --- !u!1 &1826675227
@@ -3255,6 +3280,8 @@ MonoBehaviour:
   audioManager: {fileID: 1340483122}
   difficulty: 0
   spawnTimer: 0
+  ani: {fileID: 0}
+  overlapping: 0
 --- !u!114 &2004168004
 MonoBehaviour:
   m_ObjectHideFlags: 0

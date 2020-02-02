@@ -110,7 +110,7 @@ public class CatBar : MonoBehaviour
         spawnTimer -= Time.deltaTime;
 
 
-        if(numberOfHappyCats > 0)
+        if(overlapping)
         {
           ani.SetFloat("howMuchHappy", Mathf.Lerp(ani.GetFloat("howMuchHappy"), 1, 9 * Time.deltaTime));
         }
