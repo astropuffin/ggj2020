@@ -1117,6 +1117,9 @@ MonoBehaviour:
   leftPets: []
   rightPets: []
   centerPets: []
+  leftTimer: 0
+  centerTimer: 0
+  rightTimer: 0
   leftIndicator: {fileID: 1587578767}
   rightIndicator: {fileID: 222356411}
   centerIndicator: {fileID: 975271288}
@@ -2544,6 +2547,11 @@ PrefabInstance:
       propertyPath: difficulty
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5373703796218999269, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5373703796257508616, guid: 51b8bcdd43a89bf4e85983e85aa39644,
         type: 3}
       propertyPath: petter
@@ -2569,6 +2577,11 @@ PrefabInstance:
         type: 3}
       propertyPath: difficulty
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373703796257508616, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5373703796482193945, guid: 51b8bcdd43a89bf4e85983e85aa39644,
         type: 3}
@@ -2705,6 +2718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: difficulty
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373703796887671109, guid: 51b8bcdd43a89bf4e85983e85aa39644,
+        type: 3}
+      propertyPath: acceleration
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b8bcdd43a89bf4e85983e85aa39644, type: 3}

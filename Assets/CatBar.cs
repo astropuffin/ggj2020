@@ -74,12 +74,14 @@ public class CatBar : MonoBehaviour
 
         if (scratch)
         {
-            currentVel -= acceleration * Time.deltaTime;
+            currentVel -= acceleration;
+            petter.ClearInputs(region);
         }
 
         if (pet)
         {
-            currentVel += acceleration * Time.deltaTime;
+            currentVel += acceleration;
+            petter.ClearInputs(region);
         }
 
         currentVel = Mathf.Clamp(currentVel, -maxVelocity, maxVelocity);
@@ -114,7 +116,7 @@ public class CatBar : MonoBehaviour
     public void FailPoint(Goal g)
     {
         Destroy(g.gameObject);
-        audioManager.PlayAngry();
+        //audioManager.PlayAngry();
     }
 
 }

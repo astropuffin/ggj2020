@@ -13,6 +13,30 @@ public class CatPetter : MonoBehaviour
     public List<float> rightPets = new List<float>();
     public List<float> centerPets = new List<float>();
 
+    public float leftTimer, centerTimer, rightTimer;
+    public HashSet<KeyCode> leftKeysPressed = new HashSet<KeyCode>();
+    public HashSet<KeyCode> rightKeysPressed = new HashSet<KeyCode>();
+    public HashSet<KeyCode> centerKeysPressed = new HashSet<KeyCode>();
+
+
+    public void ClearInputs(Region r)
+    {
+        keyTimers.Clear();
+
+        if(r == Region.center)
+        {
+            centerKeysPressed.Clear();
+        }
+        else if(r == Region.left)
+        {
+            leftKeysPressed.Clear();
+        }
+        else if(r == Region.right)
+        {
+            rightKeysPressed.Clear();
+        }
+    }
+
     HashSet<KeyCode> leftRegion = new HashSet<KeyCode>()
     {
         KeyCode.A, KeyCode.S, KeyCode.D,
@@ -22,7 +46,7 @@ public class CatPetter : MonoBehaviour
         KeyCode.LeftShift, KeyCode.LeftControl,
         KeyCode.LeftAlt, KeyCode.LeftWindows,
         KeyCode.Tilde, KeyCode.Alpha1, KeyCode.Alpha2,
-        KeyCode.Alpha3,
+        KeyCode.Alpha3, KeyCode.BackQuote
     };
 
     HashSet<KeyCode> centerRegion = new HashSet<KeyCode>()
@@ -55,12 +79,12 @@ public class CatPetter : MonoBehaviour
         
     }
 
-    bool DetectKeyInRegion(HashSet<KeyCode> region)
+    bool DetectKeyInRegion(HashSet<KeyCode> region, ref float timer, HashSet<KeyCode> keysPressed)
     {
         bool pressed = false;
         foreach (var code in region)
         {
-            if (Input.GetKey(code))
+            if (Input.GetKeyDown(code))
             {
                 if(keyTimers.ContainsKey(code))
                 {
@@ -70,6 +94,15 @@ public class CatPetter : MonoBehaviour
                 {
                     keyTimers.Add(code, inputRegisterTime);
                 }
+
+                if (timer <= 0)
+                {
+                    timer = inputRegisterTime;
+                    keysPressed.Clear();
+                }
+
+                keysPressed.Add(code);
+
                 pressed = true;
             }
         }
@@ -94,7 +127,7 @@ public class CatPetter : MonoBehaviour
             textobj.text = "poke";
             task = Task.poke;
         }
-        else if (count >= 2 && count <= 4)
+        else if (count >= 3 && count <= 4)
         {
             textobj.text = "tickle";
             task = Task.tickle;
@@ -112,8 +145,13 @@ public class CatPetter : MonoBehaviour
         }
     }
 
-    int CountKeysInRegion(HashSet<KeyCode> region)
+    int CountKeysInRegion(HashSet<KeyCode> keysPressed, float timer)
     {
+        if (timer > 0)
+            return 0;
+        else
+            return keysPressed.Count;
+        /*
         int count = 0;
 
         foreach(var key in region)
@@ -131,6 +169,7 @@ public class CatPetter : MonoBehaviour
         }
 
         return count;
+        */
     }
 
     public bool IsPettingRegion(Task task, Region region)
@@ -168,17 +207,13 @@ public class CatPetter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        left = DetectKeyInRegion(leftRegion);
-        right = DetectKeyInRegion(rightRegion);
-        center = DetectKeyInRegion(centerRegion);
+        left = DetectKeyInRegion(leftRegion, ref leftTimer, leftKeysPressed);
+        right = DetectKeyInRegion(rightRegion, ref rightTimer, rightKeysPressed);
+        center = DetectKeyInRegion(centerRegion, ref centerTimer, centerKeysPressed);
 
-        //leftIndicator.SetActive(left);
-        //rightIndicator.SetActive(right);
-        //centerIndicator.SetActive(center);
-
-        int leftKeyCount = CountKeysInRegion(leftRegion);
-        int rightKeyCount = CountKeysInRegion(rightRegion);
-        int centerKeyCount = CountKeysInRegion(centerRegion);
+        int leftKeyCount = CountKeysInRegion(leftKeysPressed, leftTimer);
+        int rightKeyCount = CountKeysInRegion(rightKeysPressed, rightTimer);
+        int centerKeyCount = CountKeysInRegion(centerKeysPressed, centerTimer);
 
         SetRegionText(leftKeyCount, leftText, ref currentLeftAction, leftPets);
         SetRegionText(rightKeyCount, rightText, ref currentRightAction, centerPets);
@@ -188,7 +223,9 @@ public class CatPetter : MonoBehaviour
         rightPPS = CalculatePPS(rightPets);
         centerPPS = CalculatePPS(centerPets);
 
-
+        leftTimer -= Time.deltaTime;
+        rightTimer -= Time.deltaTime;
+        centerTimer -= Time.deltaTime;
     }
 }
 
