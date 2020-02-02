@@ -17,7 +17,11 @@ public class AudioSynth : MonoBehaviour {
         Square,
         Triangle,
         Cube,
-        Soft
+        Soft,
+        DoubleSoft,
+        TripleSoft,
+        Sawtooth,
+        ReverseSawtooth
     }
 
     void Start() {
@@ -32,7 +36,8 @@ public class AudioSynth : MonoBehaviour {
             frequency *= _twelveToneRatio;
         }
 
-        gain = volume * Attenuation(Time.time - _keyDown);
+        gain = volume;
+        //gain = volume * Attenuation(Time.time - _keyDown);
     }
 
     private void OnAudioFilterRead(float[] data, int channels) {
@@ -64,6 +69,14 @@ public class AudioSynth : MonoBehaviour {
                 return CubeWave(phase);
             case WaveType.Soft:
                 return SoftWave(phase);
+            case WaveType.DoubleSoft:
+                return DoubleSoftWave(phase);
+            case WaveType.TripleSoft:
+                return TripleSoftWave(phase);
+            case WaveType.Sawtooth:
+                return SawtoothWave(phase);
+            case WaveType.ReverseSawtooth:
+                return ReverseSawtoothWave(phase);
             default:
                 return 0f;
         }
@@ -90,8 +103,32 @@ public class AudioSynth : MonoBehaviour {
 
     private static float SoftWave(double phase) {
         return 0.6f * Mathf.Sin((float) phase)
-                    + 0.4f * Mathf.Sin(2f * (float) phase);
+                    + 0.4f * Mathf.Sin(0.5f * (float) phase);
     }
+
+    private static float DoubleSoftWave(double phase) {
+        return (0.8f * Mathf.Sin((float) phase)
+                    + 0.4f * Mathf.Sin(0.5f * (float) phase)
+                    + 0.2f * Mathf.Sin(0.25f * (float) phase)
+                    ) / 1.2f;
+    }
+
+    private static float TripleSoftWave(double phase) {
+        return (0.8f * Mathf.Sin((float) phase)
+                    + 0.4f * Mathf.Sin(0.5f * (float) phase)
+                    + 0.2f * Mathf.Sin(0.25f * (float) phase)
+                    + 0.1f * Mathf.Sin(0.125f * (float) phase)
+                    ) / 1.3f;
+    }
+
+    private static float SawtoothWave(double phase) {
+        return (float) phase - Mathf.Floor((float)phase);
+    }
+
+    private static float ReverseSawtoothWave(double phase) {
+        return 1 + Mathf.Floor((float)phase) - (float) phase;
+    }
+
     private static float Attenuation(float time) {
         return Mathf.Min(1, Mathf.Exp(-4f * time));
     }
