@@ -50,8 +50,8 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Meow2
-    clip: {fileID: 8300000, guid: 946ec9f6f93a4614b8ba53d24a9c25cc, type: 3}
+  - name: Meow12
+    clip: {fileID: 8300000, guid: cbb05c07ecfcd1f43b0b3f1c4a46ccb3, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -106,12 +106,6 @@ MonoBehaviour:
     loop: 0
   - name: Meow11
     clip: {fileID: 8300000, guid: bb0384b1f15524d45b0edd96752a297e, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: Meow12
-    clip: {fileID: 8300000, guid: cbb05c07ecfcd1f43b0b3f1c4a46ccb3, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
@@ -171,20 +165,20 @@ MonoBehaviour:
     name: ShepardTone
     clip: {fileID: 8300000, guid: 2e0cacc9b67a7c44197c6e2c5bd7e437, type: 3}
     volume: 0.8
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
     loop: 1
   TimeWarning:
     name: Warning
     clip: {fileID: 8300000, guid: 8d8a514580036434488c21bf1f5755ca, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
     loop: 0
   Pop:
     name: Pop
     clip: {fileID: 8300000, guid: 135f59a9c0c44084d9402bbb5d2d4553, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     loop: 0
