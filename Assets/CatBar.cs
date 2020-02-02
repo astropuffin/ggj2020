@@ -22,6 +22,8 @@ public class CatBar : MonoBehaviour
     public RectTransform powerBar;
     public RectTransform powerBarHolder;
 
+    public AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +53,21 @@ public class CatBar : MonoBehaviour
 
         goal.DOAnchorPos(new Vector2(goal.anchoredPosition.x, relativeHeight), 0.25f);
         goal.DOSizeDelta(new Vector2(goal.sizeDelta.x, goalSize * masterHeight), 0.25f);
+
+        FindObjectOfType<Tolerance>().AddPoint();
+        FindObjectOfType<Score>().AddPoint();
+
+        audioManager.PlayMeow();
     }
 
     void ShowPower()
     {
         powerBar.anchorMax = new Vector2(purrPower, powerBar.anchorMax.y);
-        powerBarHolder.DOShakeAnchorPos(0.1f, purrPower / 10.0f);
+        powerBarHolder.DOShakeScale(0.1f, purrPower/10.0f);
+        if (purrPower == 0)
+        {
+            powerBarHolder.DOScale(Vector3.one, 0.1f);
+        }
 
     }
 

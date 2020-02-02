@@ -5,8 +5,13 @@ using TMPro;
 
 public class CatPetter : MonoBehaviour
 {
+    public float ppsWindow;
     public float inputRegisterTime;
     public Dictionary<KeyCode, float> keyTimers = new Dictionary<KeyCode, float>();
+    public float leftPPS, centerPPS, rightPPS;
+    public List<float> leftPets = new List<float>();
+    public List<float> rightPets = new List<float>();
+    public List<float> centerPets = new List<float>();
 
     HashSet<KeyCode> leftRegion = new HashSet<KeyCode>()
     {
@@ -82,7 +87,7 @@ public class CatPetter : MonoBehaviour
 
     
 
-    void SetRegionText(int count, TextMeshPro textobj, ref Task task )
+    void SetRegionText(int count, TextMeshPro textobj, ref Task task, List<float> petList )
     {
         if(count == 1)
         {
@@ -98,6 +103,7 @@ public class CatPetter : MonoBehaviour
         {
             textobj.text = "pet";
             task = Task.pet;
+            petList.Add(Time.realtimeSinceStartup);
         }
         else
         {
@@ -142,6 +148,22 @@ public class CatPetter : MonoBehaviour
         return false;
     }
 
+    float CalculatePPS(List<float> list)
+    {
+        var currentTime = Time.realtimeSinceStartup;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            var reverseIndex = (list.Count - i - 1);
+            if (currentTime - list[reverseIndex] > ppsWindow)
+            {
+                list.RemoveAt(reverseIndex);
+            }
+        }
+
+        return list.Count / ppsWindow;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -158,9 +180,15 @@ public class CatPetter : MonoBehaviour
         int rightKeyCount = CountKeysInRegion(rightRegion);
         int centerKeyCount = CountKeysInRegion(centerRegion);
 
-        SetRegionText(leftKeyCount, leftText, ref currentLeftAction);
-        SetRegionText(rightKeyCount, rightText, ref currentRightAction);
-        SetRegionText(centerKeyCount, centerText, ref currentCenterAction);
+        SetRegionText(leftKeyCount, leftText, ref currentLeftAction, leftPets);
+        SetRegionText(rightKeyCount, rightText, ref currentRightAction, centerPets);
+        SetRegionText(centerKeyCount, centerText, ref currentCenterAction, rightPets);
+
+        leftPPS = CalculatePPS(leftPets);
+        rightPPS = CalculatePPS(rightPets);
+        centerPPS = CalculatePPS(centerPets);
+
+
     }
 }
 
