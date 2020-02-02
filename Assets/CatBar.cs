@@ -51,6 +51,7 @@ public class CatBar : MonoBehaviour
         goal.goalPosition = goalPosition;
         goal.goalSize = goalSize;
         goal.dad = this;
+        audioManager.PlayPop();
     }
 
     void SetIndicatorPos(float pos)
