@@ -1,22 +1,12 @@
 fileFormatVersion: 2
-guid: 02cbe5f3c79a39847a1167ba7b6d143b
+guid: 21c192199a0882042b0f5990e10856b1
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -8928351471818444634
-    second: s2
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mat
-    second: {fileID: 2100000, guid: 0958f3ed65d1c9d45bd3cdc36bccb5b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mat.1
-    second: {fileID: 2100000, guid: 83bfd7481b4963a4b8c4c8dd7f107d94, type: 2}
+    second: happy
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -45,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: s2
+      name: happy
       takeName: C4D Animation Take
       internalID: 0
       firstFrame: 0
