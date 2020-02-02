@@ -32,7 +32,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -8928351471818444634, guid: 465d7a8ead6583e44b9a871393a45b45,
+    m_Motion: {fileID: -8928351471818444634, guid: 9d3b69b6ad36950438ec7579da333709,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -41,7 +41,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -8928351471818444634, guid: 02cbe5f3c79a39847a1167ba7b6d143b,
+    m_Motion: {fileID: -8928351471818444634, guid: 21c192199a0882042b0f5990e10856b1,
       type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
@@ -115,19 +115,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Blend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: howMuchHappy
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
