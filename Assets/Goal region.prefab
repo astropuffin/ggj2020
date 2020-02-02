@@ -89,12 +89,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 8147834046234332614}
   holder: {fileID: 8147834045323687009}
+  barImage: {fileID: 8147834046234332615}
   timeRemaining: 0
   maxTime: 0
   goalPosition: 0
   goalSize: 0
   dad: {fileID: 0}
   timeToFill: 0
+  nice: {r: 0, g: 0.9811321, b: 0.9811321, a: 1}
+  bad: {r: 0.9528302, g: 0, b: 0, a: 1}
 --- !u!1 &8147834046234332613
 GameObject:
   m_ObjectHideFlags: 0
