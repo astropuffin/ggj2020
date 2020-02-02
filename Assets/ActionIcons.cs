@@ -70,7 +70,7 @@ public class ActionIcons : MonoBehaviour
             middlePet.enabled = false;
             middleScratch.enabled = true;
         }
-        if (catPetter.currentCenterAction == Task.none && Time.time - leftShowTime > waitToBlank)
+        if (catPetter.currentCenterAction == Task.none && Time.time - middleShowTime > waitToBlank)
         {
             middlePet.enabled = false;
             middleScratch.enabled = false;
@@ -91,7 +91,7 @@ public class ActionIcons : MonoBehaviour
             rightPet.enabled = false;
             rightScratch.enabled = true;
         }
-        if (catPetter.currentRightAction == Task.none && Time.time - leftShowTime > waitToBlank)
+        if (catPetter.currentRightAction == Task.none && Time.time - rightShowTime > waitToBlank)
         {
             rightPet.enabled = false;
             rightScratch.enabled = false;
